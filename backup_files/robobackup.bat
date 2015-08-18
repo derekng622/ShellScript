@@ -1,11 +1,11 @@
 @echo off
 REM **************************************************
-REM ** ROBOCOPY±¸·Ý×ÊÁÏ			 					**
-REM ** µÚÒ»¸ö²ÎÊý£ºÔ´Â·¾¶source 					**
-REM ** µÚ¶þ¸ö²ÎÊý£ºÄ¿µÄÂ·¾¶destination  			**
+REM ** ROBOCOPYå¤‡ä»½èµ„æ–™			 					**
+REM ** ç¬¬ä¸€ä¸ªå‚æ•°ï¼šæºè·¯å¾„source 					**
+REM ** ç¬¬äºŒä¸ªå‚æ•°ï¼šç›®çš„è·¯å¾„destination  			**
 REM ** 					 							**
-REM ** Author£º	   ÎâµÂ»Ô 							**
-REM ** ÈÕÆÚ£º	   1015-05-15						**
+REM ** Authorï¼š	   å´å¾·è¾‰ 							**
+REM ** æ—¥æœŸï¼š	   1015-05-15						**
 REM **************************************************
 
 if ""%1""=="""" goto usage
@@ -17,7 +17,7 @@ set destination=%2
 set logfile=d:\LOGFILE\BACKUP\%date:~0,4%%date:~5,2%%date:~8,2%.log
 call ROBOCOPY %source% %destination% /S /R:3 >>%logfile%
 
-REM ** ÖØÉèÖÃ·µ»ØÖµ if %ERRORLEVEL% LEQ 7 set ERRORLEVEL=0 »òÏÂÃæµÄÐ´·¨
+REM ** é‡è®¾ç½®è¿”å›žå€¼ if %ERRORLEVEL% LEQ 7 set ERRORLEVEL=0 æˆ–ä¸‹é¢çš„å†™æ³•
 if ERRORLEVEL 1 set ERRORLEVEL=0
 if ERRORLEVEL 2 set ERRORLEVEL=0
 if ERRORLEVEL 3 set ERRORLEVEL=0 
@@ -26,18 +26,18 @@ if ERRORLEVEL 6 set ERRORLEVEL=0
 if ERRORLEVEL 7 set ERRORLEVEL=0
 
 IF "%ERRORLEVEL%"=="0" (
-	echo Ö´ÐÐ³É¹¦
+	echo æ‰§è¡ŒæˆåŠŸ
 	goto end	
 ) ELSE (
 	goto err
 )
 
 :usage
-echo ¼òµ¥ÓÃ·¨:: ROBOCOPY source destination /MIR
-echo Ô´:: Ô´Ä¿Â¼(Çý¶¯Æ÷:\Â·¾¶»ò\\·þÎñÆ÷\¹²Ïí\Â·¾¶)¡£
-echo                 Ä¿±ê:: Ä¿±êÄ¿Â¼(Çý¶¯Æ÷:\Â·¾¶»ò\\·þÎñÆ÷\¹²Ïí\Â·¾¶)¡£
-echo                /MIR :: ¾µÏñÍêÕûÄ¿Â¼Ê÷¡£
-echo     ÓÐ¹ØÓÃ·¨µÄÏêÏ¸ÐÅÏ¢£¬ÇëÔËÐÐ ROBOCOPY /? 
+echo ç®€å•ç”¨æ³•:: ROBOCOPY source destination /MIR
+echo æº:: æºç›®å½•(é©±åŠ¨å™¨:\è·¯å¾„æˆ–\\æœåŠ¡å™¨\å…±äº«\è·¯å¾„)ã€‚
+echo                 ç›®æ ‡:: ç›®æ ‡ç›®å½•(é©±åŠ¨å™¨:\è·¯å¾„æˆ–\\æœåŠ¡å™¨\å…±äº«\è·¯å¾„)ã€‚
+echo                /MIR :: é•œåƒå®Œæ•´ç›®å½•æ ‘ã€‚
+echo     æœ‰å…³ç”¨æ³•çš„è¯¦ç»†ä¿¡æ¯ï¼Œè¯·è¿è¡Œ ROBOCOPY /? 
 goto end
 
 :err
