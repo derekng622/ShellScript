@@ -1,0 +1,24 @@
+Robocopy Errorlevel Return Codes (found in robocopy.doc)
+
+The return code from Robocopy is a bit map, defined as follows:
+
+0×10 Serious error. Robocopy did not copy any files. This is either a usage error or an error due to insufficient access privileges on the source or destination directories.
+0×08 Some files or directories could not be copied (copy errors occurred and the retry limit was exceeded). Check these errors further.
+0×04 Some Mismatched files or directories were detected. Examine the output log. Housekeeping is probably necessary.
+0×02 Some Extra files or directories were detected. Examine the output log. Some housekeeping may be needed.
+0×01 One or more files were copied successfully (that is, new files have arrived).
+0×00 No errors occurred, and no copying was done. The source and destination directory trees are completely synchronized.
+
+
+如果使用hudson、cruisecontrol之类的软件使用robocopy，由于robocopy正常拷贝下返回值不是0，这些软件都会报错。因此，使用如下语句进行重设置返回值：
+
+if %ERRORLEVEL% LEQ 7 set ERRORLEVEL=0
+
+或者单独设置
+
+if ERRORLEVEL 1 set ERRORLEVEL=0
+if ERRORLEVEL 2 set ERRORLEVEL=0
+if ERRORLEVEL 3 set ERRORLEVEL=0 
+if ERRORLEVEL 5 set ERRORLEVEL=0 
+if ERRORLEVEL 6 set ERRORLEVEL=0 
+if ERRORLEVEL 7 set ERRORLEVEL=0 
